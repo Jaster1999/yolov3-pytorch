@@ -48,7 +48,7 @@ def parse_cfg(cfgfile):
 def create_modules(blocks):
     net_info = blocks[0]     #Captures the information about the input and pre-processing    
     module_list = nn.ModuleList()
-    prev_filters = net_info['channels']
+    prev_filters = int(net_info['channels'])
     output_filters = []
 
     for index, x in enumerate(blocks[1:]):
