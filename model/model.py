@@ -15,6 +15,17 @@ class DetectionLayer(nn.Module):
         super(DetectionLayer, self).__init__()
         self.anchors = anchors
 
+class yolo(nn.Module):
+    def __init__(self, cfgfile):
+        super(yolo, self).__init__()
+        self.blocks = parse_cfg(cfgfile)
+        self.net_info, self.module_list = create_modules(self.blocks)
+
+    def forward(self, x, CUDA):
+        modules = self.blocks[1:]
+        outputs = {}   #We cache the outputs for the route layer
+
+
 def parse_cfg(cfgfile):
     """
     Takes a configuration file
